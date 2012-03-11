@@ -35,11 +35,11 @@ module Trace
     def add_example(class_name, binding, file, id)
       if has_example?(class_name, binding)
         example = eval('example', binding)
-        @current_description = describe(example)
+        @description = describe(example)
       end
 
-      if @current_description && !gem?(file)
-        classes = @examples[@current_description]
+      if @description && !gem?(file)
+        classes = @examples[@description]
         classes << class_name unless classes.include?(class_name)
       end
     end
