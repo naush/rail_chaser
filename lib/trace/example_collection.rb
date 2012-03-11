@@ -3,14 +3,14 @@ module Trace
     attr_accessor :examples
 
     def initialize
-      @examples = {}
+      @examples = Hash.new { |h, description| h[description] = [] }
       @storage = Trace::Storage.new
     end
 
     def each_description_and_classes
       if block_given?
-        @examples.each_pair do |description, data|
-          yield description, data[:classes]
+        @examples.each_pair do |description, classes|
+          yield description, classes
         end
       end
     end
@@ -20,11 +20,7 @@ module Trace
     end
 
     def gem?(file)
-      file =~ gem_paths_pattern
-    end
-
-    def gem(file)
-      file.gsub(gem_paths_pattern, '').split('/')[2]
+      (file =~ gem_paths_pattern) == 0
     end
 
     def describe(example)
@@ -40,29 +36,16 @@ module Trace
       if has_example?(class_name, binding)
         example = eval('example', binding)
         @current_description = describe(example)
-        @examples[@current_description] ||= new_description
       end
 
-      if @current_description
-        classes = @examples[@current_description][:classes]
+      if @current_description && !gem?(file)
+        classes = @examples[@current_description]
         classes << class_name unless classes.include?(class_name)
-        @examples[@current_description][:gems] << gem(file) if gem?(file)
-        @examples[@current_description][:methods] << id
       end
-    end
-
-    def new_description
-      {
-        :gems    => [],
-        :classes => [],
-        :methods => []
-      }
     end
 
     def classes
-      @examples.collect do |description, data|
-        data[:classes]
-      end.flatten.uniq
+      @examples.values.flatten.uniq
     end
 
     def save!
