@@ -15,14 +15,6 @@ module Trace
       end
     end
 
-    def gem_paths_pattern
-      @gem_paths ||= Regexp.compile(ENV['GEM_PATH'].gsub(':', '|'))
-    end
-
-    def gem?(file)
-      (file =~ gem_paths_pattern) == 0
-    end
-
     def describe(example)
       return unless example
       example.metadata[:example_group][:full_description].split.first
@@ -38,7 +30,7 @@ module Trace
         @description = describe(example)
       end
 
-      if @description && !gem?(file)
+      if @description
         classes = @examples[@description]
         classes << class_name unless classes.include?(class_name)
       end
