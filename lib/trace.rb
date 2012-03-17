@@ -3,6 +3,8 @@ require 'trace/example_collection'
 
 module Trace
   class << self
+    attr_accessor :collection
+
     def on
       @collection = ExampleCollection.new
 
@@ -14,7 +16,7 @@ module Trace
 
     def start
       set_trace_func proc { |event, file, line, method, binding, klass|
-        @collection.add_example(klass.to_s, binding, file, method)
+        @collection.add_example(file)
       }
     end
 
