@@ -1,6 +1,6 @@
 require 'sqlite3'
 
-module Trace
+module RailChaser
   class Storage
     def initialize
       destroy!

@@ -1,15 +1,15 @@
 require 'spec_helper'
-require 'trace'
+require 'rail_chaser'
 
-describe Trace do
+describe RailChaser do
   describe "self.on" do
     it "initializes a new example collection" do
-      Trace.on
-      Trace.collection.should_not be_nil
+      RailChaser.on
+      RailChaser.collection.should_not be_nil
     end
 
     it "configures RSpec before and after suite" do
-      Trace.on
+      RailChaser.on
       RSpec.configure do |config|
         config.hooks[:before][:suite].should_not be_empty
         config.hooks[:after][:suite].should_not be_empty

@@ -1,7 +1,7 @@
 require File.expand_path('../prime_factor', __FILE__)
-require File.expand_path('../../lib/trace', __FILE__)
+require File.expand_path('../../lib/rail_chaser', __FILE__)
 
-Trace.on
+RailChaser.on
 
 describe PrimeFactor do
   def test_factor(number, expected_factors)

@@ -1,12 +1,12 @@
-require 'trace/storage'
+require 'rail_chaser/storage'
 
-module Trace
+module RailChaser
   class ExampleCollection
     attr_accessor :examples, :storage
 
     def initialize
       @examples = Hash.new { |h, spec| h[spec] = [] }
-      @storage = Trace::Storage.new
+      @storage = RailChaser::Storage.new
     end
 
     def gem_path_pattern

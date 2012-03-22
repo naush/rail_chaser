@@ -1,7 +1,7 @@
-require 'trace/storage'
-require 'trace/example_collection'
+require 'rail_chaser/storage'
+require 'rail_chaser/example_collection'
 
-module Trace
+module RailChaser
   class << self
     attr_accessor :collection
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'trace/storage'
+require 'rail_chaser/storage'
 
-describe Trace::Storage do
+describe RailChaser::Storage do
   describe "initialize" do
     it "destroys previous database file"
     it "creates new database file"
