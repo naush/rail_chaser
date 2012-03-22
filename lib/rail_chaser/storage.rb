@@ -37,11 +37,11 @@ WHERE c.file = '#{file}';
     end
 
     def destroy!
-      File.delete("trace.db") if File.exists?("trace.db")
+      File.delete("specs.db") if File.exists?("specs.db")
     end
 
     def create!
-      @connection = SQLite3::Database.new("trace.db")
+      @connection = SQLite3::Database.new("specs.db")
 
       # PRAGMA foreign_keys = ON;
       sql = <<-SQL
