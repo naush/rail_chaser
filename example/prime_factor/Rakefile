@@ -1,0 +1,22 @@
+require 'rspec/core/rake_task'
+require 'rail_chaser'
+require 'rail_chaser/task'
+
+task :default => ['spec:all']
+
+namespace :spec do
+  desc 'Analyze project dependencies'
+  task :analyze do
+    RailChaser.on
+    Rake::Task['spec:all'].execute
+  end
+
+  desc 'Find the minimum set of specs to run'
+  task :minimum do
+  end
+
+  RSpec::Core::RakeTask.new(:all) do |spec|
+    spec.pattern = 'spec/**/*_spec.rb'
+    spec.rspec_opts = ['--backtrace']
+  end
+end

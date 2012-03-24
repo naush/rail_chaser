@@ -38,13 +38,7 @@ describe RailChaser::ExampleCollection do
     end
   end
 
-
   describe "initialize" do
-    it "creates a new storage" do
-      collection = RailChaser::ExampleCollection.new
-      collection.storage.should_not be_nil
-    end
-
     it "initializes a hash defaults to arrays" do
       collection = RailChaser::ExampleCollection.new
       collection.examples["spec"].should == []

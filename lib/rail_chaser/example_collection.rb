@@ -4,9 +4,18 @@ module RailChaser
   class ExampleCollection
     attr_accessor :examples, :storage
 
+    def self.create
+      example = ExampleCollection.new
+      example.initialize_storage
+      example
+    end
+
     def initialize
       @examples = Hash.new { |h, spec| h[spec] = [] }
-      @storage = RailChaser::Storage.new
+    end
+
+    def initialize_storage
+      @storage = RailChaser::Storage.create
     end
 
     def gem_path_pattern

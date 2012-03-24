@@ -6,7 +6,7 @@ module RailChaser
     attr_accessor :collection
 
     def on
-      @collection = ExampleCollection.new
+      @collection = ExampleCollection.create
 
       RSpec.configure do |config|
         config.before(:suite) { start }

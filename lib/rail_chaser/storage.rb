@@ -2,9 +2,25 @@ require 'sqlite3'
 
 module RailChaser
   class Storage
+    attr_accessor :db_path
+
     def initialize
-      destroy!
-      create!
+      self.db_path = "spec.db"
+    end
+
+    def self.create
+      storage = RailChaser::Storage.new
+      storage.destroy!
+      storage.create!
+      storage
+    end
+
+    def list_specs
+      @connection.execute("SELECT file FROM specs").flatten
+    end
+
+    def list_classes
+      @connection.execute("SELECT file FROM classes").flatten
     end
 
     def add_class(file)
@@ -33,15 +49,19 @@ SELECT s.file
 FROM specs_classes sc JOIN classes c JOIN specs s ON sc.class_id = c.id AND sc.spec_id = s.id
 WHERE c.file = '#{file}';
       SQL
-      @connection.execute(sql)
+      @connection.execute(sql).flatten
+    end
+
+    def load!
+      @connection = SQLite3::Database.open(db_path)
     end
 
     def destroy!
-      File.delete("specs.db") if File.exists?("specs.db")
+      File.delete(db_path) if File.exists?(db_path)
     end
 
     def create!
-      @connection = SQLite3::Database.new("specs.db")
+      @connection = SQLite3::Database.new(db_path)
 
       # PRAGMA foreign_keys = ON;
       sql = <<-SQL

@@ -1,6 +1,6 @@
-require File.expand_path('../prime_factor', __FILE__)
-require File.expand_path('../../lib/rail_chaser', __FILE__)
+require File.expand_path('../../lib/prime_factor', __FILE__)
 
+require 'rail_chaser'
 RailChaser.on
 
 describe PrimeFactor do
