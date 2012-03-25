@@ -27,11 +27,6 @@ describe RailChaser::ExampleCollection do
       collection.spec?("/spec/trace/example_collection_spec.rb").should be_true
     end
 
-    it "does not match spec_helper" do
-      collection = RailChaser::ExampleCollection.new
-      collection.spec?("/spec/spec_helper.rb").should be_false
-    end
-
     it "does not match lib file" do
       collection = RailChaser::ExampleCollection.new
       collection.spec?("/lib/trace.rb").should be_false

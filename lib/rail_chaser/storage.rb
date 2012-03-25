@@ -47,7 +47,7 @@ module RailChaser
       sql = <<-SQL
 SELECT s.file
 FROM specs_classes sc JOIN classes c JOIN specs s ON sc.class_id = c.id AND sc.spec_id = s.id
-WHERE c.file = '#{file}';
+WHERE c.file LIKE '%#{file}';
       SQL
       @connection.execute(sql).flatten
     end

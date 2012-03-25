@@ -35,7 +35,7 @@ module RailChaser
     end
 
     def spec?(file)
-      file =~ /(\/spec\/(.*)?)?\_spec\.rb/
+      file =~ /\/spec\//
     end
 
     def add_class?(file, classes)
