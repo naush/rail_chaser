@@ -15,5 +15,21 @@ describe RailChaser do
         config.hooks[:after][:suite].should_not be_empty
       end
     end
+
+    it "configures options for example collection" do
+      RailChaser.on do |config|
+        config[:skip_gem] = true
+      end
+
+      RailChaser.collection.options[:skip_gem].should be_true
+    end
+
+    it "configures options for storage" do
+      RailChaser.on do |config|
+        config[:db_path] = 'spec.rb'
+      end
+
+      RailChaser.storage.options[:db_path].should == 'spec.rb'
+    end
   end
 end

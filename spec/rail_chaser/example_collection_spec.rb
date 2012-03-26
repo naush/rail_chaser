@@ -38,6 +38,30 @@ describe RailChaser::ExampleCollection do
       collection = RailChaser::ExampleCollection.new
       collection.examples["spec"].should == []
     end
+
+    it "inherits options" do
+      collection = RailChaser::ExampleCollection.new({
+        :skip_gem => true
+      })
+      collection.options[:skip_gem].should be_true
+    end
+  end
+
+  describe "add_class" do
+    it "returns false if file is spec and skip_spec is true" do
+      collection = RailChaser::ExampleCollection.new(:skip_spec => true)
+      collection.add_class?('/spec/spec.rb', []).should be_false
+    end
+
+    it "returns false if file is spec and skip_spec is false" do
+      collection = RailChaser::ExampleCollection.new(:skip_spec => false)
+      collection.add_class?('/spec/spec.rb', []).should be_true
+    end
+
+    it "does not add duplicated class" do
+      collection = RailChaser::ExampleCollection.new
+      collection.add_class?('class_a', ['class_a']).should be_false
+    end
   end
 
   describe "classes" do

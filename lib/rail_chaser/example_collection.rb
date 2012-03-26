@@ -1,9 +1,10 @@
 module RailChaser
   class ExampleCollection
-    attr_accessor :examples
+    attr_accessor :examples, :options
 
-    def initialize
+    def initialize(options={})
       @examples = Hash.new { |h, spec| h[spec] = [] }
+      @options = options
     end
 
     def gem_path_pattern
@@ -23,9 +24,9 @@ module RailChaser
     end
 
     def add_class?(file, classes)
-      return false if spec?(file)
-      return false if gem?(file)
-      return false if ruby_core?(file)
+      return false if @options[:skip_spec] && spec?(file)
+      return false if @options[:skip_gem] && gem?(file)
+      return false if @options[:skip_ruby_core] && ruby_core?(file)
       return false if classes.include?(file)
       return true
     end

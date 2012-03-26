@@ -2,14 +2,14 @@ require 'sqlite3'
 
 module RailChaser
   class Storage
-    attr_accessor :db_path
+    attr_accessor :options
 
-    def initialize
-      self.db_path = "spec.db"
+    def initialize(options={:db_path => 'spec.db'})
+      @options = options
     end
 
-    def self.create
-      storage = RailChaser::Storage.new
+    def self.create(options={:db_path => 'spec.db'})
+      storage = RailChaser::Storage.new(options)
       storage.destroy!
       storage.create!
       storage
@@ -50,6 +50,10 @@ FROM specs_classes sc JOIN classes c JOIN specs s ON sc.class_id = c.id AND sc.s
 WHERE c.file LIKE '%#{file}';
       SQL
       @connection.execute(sql).flatten
+    end
+
+    def db_path
+      options[:db_path]
     end
 
     def load!
