@@ -36,9 +36,11 @@ module RailChaser
             puts "# - #{spec}"
           end
 
-          rspec_command = "rspec #{specs.join(' ')}"
-          result = `#{rspec_command}`
-          puts "\n#{result}"
+          unless specs.empty?
+            rspec_command = "rspec #{specs.join(' ')}"
+            result = `#{rspec_command}`
+            puts "\n#{result}"
+          end
         end
       end
     end
