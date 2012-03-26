@@ -26,8 +26,8 @@ Edit spec_helper.rb:
 ## Configuration
 
     RailChaser.on do |config|
-      config.skip_gem = false # default true
-      config.skip_ruby_core = false # default true
-      config.skip_spec = false # default true
+      config.skip_gem = true # default: true
+      config.skip_ruby_core = true # default: true
+      config.skip_spec = true # default: true
       # config.db_path defaults to 'spec.db', not available yet
     end
