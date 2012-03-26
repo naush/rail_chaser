@@ -12,9 +12,9 @@ Gem::Specification.new do |s|
   s.summary     = %q{A tool to determine the the minimum set of specs to run based on dependency analysis}
   s.description = %q{}
 
-  s.add_development_dependency "rake", "0.9.2"
+  s.add_dependency "rake", "0.9.2"
+  s.add_dependency "sqlite3", "1.3.5"
   s.add_development_dependency "rspec", "2.9.0"
-  s.add_development_dependency "sqlite3", "1.3.5"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- spec/*`.split("\n")
