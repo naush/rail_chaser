@@ -1,12 +1,12 @@
-require 'rail_chaser/storage'
 require 'rail_chaser/example_collection'
+require 'rail_chaser/storage'
 
 module RailChaser
   class << self
-    attr_accessor :collection
+    attr_accessor :collection, :storage
 
     def on
-      @collection = ExampleCollection.create
+      @collection = ExampleCollection.new
 
       RSpec.configure do |config|
         config.before(:suite) { start }
@@ -22,7 +22,8 @@ module RailChaser
 
     def finish
       set_trace_func(nil)
-      @collection.save!
+      storage = Storage.create
+      storage.save!(@collection)
     end
   end
 end

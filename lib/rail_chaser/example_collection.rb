@@ -1,21 +1,9 @@
-require 'rail_chaser/storage'
-
 module RailChaser
   class ExampleCollection
-    attr_accessor :examples, :storage
-
-    def self.create
-      example = ExampleCollection.new
-      example.initialize_storage
-      example
-    end
+    attr_accessor :examples
 
     def initialize
       @examples = Hash.new { |h, spec| h[spec] = [] }
-    end
-
-    def initialize_storage
-      @storage = RailChaser::Storage.create
     end
 
     def gem_path_pattern
@@ -61,10 +49,6 @@ module RailChaser
 
     def classes
       @examples.values.flatten.uniq
-    end
-
-    def save!
-      @storage.save!(self)
     end
   end
 end
