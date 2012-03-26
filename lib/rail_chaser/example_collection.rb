@@ -26,10 +26,6 @@ module RailChaser
       file =~ gem_path_pattern
     end
 
-    def trace?(file)
-      file =~ /trace\.rb/ # current path
-    end
-
     def ruby_core?(file)
       file =~ /#{ENV['MY_RUBY_HOME']}/
     end
@@ -41,7 +37,6 @@ module RailChaser
     def add_class?(file, classes)
       return false if spec?(file)
       return false if gem?(file)
-      return false if trace?(file)
       return false if ruby_core?(file)
       return false if classes.include?(file)
       return true

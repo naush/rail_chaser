@@ -19,17 +19,17 @@ describe RailChaser::ExampleCollection do
   describe "spec?" do
     it "matches any file ending with _spec.rb" do
       collection = RailChaser::ExampleCollection.new
-      collection.spec?("/spec/trace/example_collection_spec.rb").should be_true
+      collection.spec?("/spec/rail_chaser/example_collection_spec.rb").should be_true
     end
 
     it "matches files inside /spec/ directory" do
       collection = RailChaser::ExampleCollection.new
-      collection.spec?("/spec/trace/example_collection_spec.rb").should be_true
+      collection.spec?("/spec/rail_chaser/example_collection_spec.rb").should be_true
     end
 
     it "does not match lib file" do
       collection = RailChaser::ExampleCollection.new
-      collection.spec?("/lib/trace.rb").should be_false
+      collection.spec?("/lib/rail_chaser.rb").should be_false
     end
   end
 
