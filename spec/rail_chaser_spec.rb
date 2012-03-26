@@ -18,7 +18,7 @@ describe RailChaser do
 
     it "configures options for example collection" do
       RailChaser.on do |config|
-        config[:skip_gem] = true
+        config.skip_gem = true
       end
 
       RailChaser.collection.options[:skip_gem].should be_true
@@ -26,7 +26,7 @@ describe RailChaser do
 
     it "configures options for storage" do
       RailChaser.on do |config|
-        config[:db_path] = 'spec.rb'
+        config.db_path = 'spec.rb'
       end
 
       RailChaser.storage.options[:db_path].should == 'spec.rb'

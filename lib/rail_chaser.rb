@@ -11,7 +11,7 @@ module RailChaser
       yield @config if block_given?
 
       @collection = ExampleCollection.new(@config.example_collection_options)
-      @storage = Storage.create(@config)
+      @storage = Storage.create(@config.storage_options)
 
       RSpec.configure do |config|
         config.before(:suite) { start }

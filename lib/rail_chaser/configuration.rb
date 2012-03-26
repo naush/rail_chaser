@@ -1,38 +1,26 @@
 module RailChaser
   class Configuration
-    attr_accessor :options
-
-    EXAMPLE_COLLECTION_OPTIONS = [:skip_gem, :skip_ruby_core, :skip_spec]
-    STORAGE_OPTIONS = [:db_path]
+    attr_accessor :skip_gem, :skip_ruby_core, :skip_spec, :db_path
 
     def initialize
-      @options = {}
-      @options[:skip_gem] = true
-      @options[:skip_ruby_core] = true
-      @options[:skip_spec] = true
-      @options[:db_path] = 'spec.db'
+      @skip_gem = true
+      @skip_ruby_core = true
+      @skip_spec = true
+      @db_path = 'spec.db'
     end
 
     def example_collection_options
-      EXAMPLE_COLLECTION_OPTIONS.inject({}) do |options, key|
-        options[key] = @options[key]
-        options
-      end
+      {
+        :skip_gem => @skip_gem,
+        :skip_ruby_core => @skip_ruby_core,
+        :skip_spec => @skip_spec
+      }
     end
 
     def storage_options
-      STORAGE_OPTIONS.inject({}) do |options, key|
-        options[key] = @options[key]
-        options
-      end
-    end
-
-    def [](key)
-      @options[key]
-    end
-
-    def []=(key, value)
-      @options[key] = value
+      {
+        :db_path => @db_path
+      }
     end
   end
 end
