@@ -3,8 +3,7 @@ Find the minimum set of specs based on dependency analysis.
 
 ## Install
 
-    rake build
-    gem install rail_chaser-0.0.1.gem
+    gem install rail_chaser
 
 ## Setup
 
