@@ -1,12 +1,33 @@
-## What I Want
-Only run specs that are affected by the code I touched.
+## Rail Chaser
+Finds the minimum set of specs based on dependency analysis.
 
-## What I need
-- Dependency analysis between specs and classes
-- Store analysis in memory or database
-- Ability to query for specs based on classes
-- Easy integration with existing projects
-- Scripts to generate analysis, and run specs
+## Install
 
-## What I have
-Chicken bones.
+    rake build
+    gem install rail_chaser-0.0.1.gem
+
+## Setup
+
+Edit Rakefile:
+
+    require 'rail_chaser/task'
+    RailChaser::Task.new
+
+Edit spec_helper.rb:
+
+    require 'rail_chaser'
+    RailChaser.on
+
+## Usage
+
+    rake spec # generate spec.db
+    rake spec:min
+
+## Configuration
+
+    RailChaser.on do |config|
+      config.skip_gem = false # default true
+      config.skip_ruby_core = false # default true
+      config.skip_spec = false # default true
+      # config.db_path defaults to 'spec.db', not available yet
+    end
