@@ -14,15 +14,18 @@ module RailChaser
       desc 'Runs minimum set of specs'
       namespace :spec do
         task name do
-          diff_files = `git diff --name-only`.split("\n")
-          staged_files = `git diff --staged --name-only`.split("\n")
+          diff_files = `git diff HEAD --name-only`.split("\n")
+
+          # ToDo: possibly add new spec files to specs
+          # new_files = `git ls-files --exclude-standard --others`.split("\n")
+          # new_files.select { |file| file =~ /(\/spec\/(.*)?)?\_spec\.rb/ }
 
           storage = RailChaser::Storage.new
           storage.load!
 
           puts "# Changed files:\n"
           specs = []
-          (diff_files + staged_files).each do |file|
+          diff_files.each do |file|
             puts "# - #{file}"
             specs << storage.find_specs_by_class(file)
           end
