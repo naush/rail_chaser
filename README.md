@@ -1,5 +1,5 @@
 ## Rail Chaser
-Finds the minimum set of specs based on dependency analysis.
+Find the minimum set of specs based on dependency analysis.
 
 ## Install
 
