@@ -1,6 +1,10 @@
 require 'sqlite3'
 
 module RailChaser
+  module Errors
+    class NoDataSetError < StandardError; end
+  end
+
   class Storage
     attr_accessor :options
 
@@ -57,6 +61,7 @@ WHERE c.file LIKE '%#{file}';
     end
 
     def load!
+      raise RailChaser::Errors::NoDataSetError unless File.exists?(db_path)
       @connection = SQLite3::Database.open(db_path)
     end
 

@@ -3,6 +3,13 @@ require 'rail_chaser/storage'
 require 'rail_chaser/example_collection'
 
 describe RailChaser::Storage do
+  describe "load!" do
+    it "raises error if data is not prepared" do
+      @storage = RailChaser::Storage.new(:db_path => 'missing.db')
+      expect { @storage.load! }.to raise_error(RailChaser::Errors::NoDataSetError)
+    end
+  end
+
   describe "save!" do
     before(:all) do
       @storage = RailChaser::Storage.new(:db_path => 'test.db')

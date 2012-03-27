@@ -1,4 +1,3 @@
-require 'rail_chaser'
 require 'rail_chaser/storage'
 require 'rake'
 require 'rake/tasklib'
