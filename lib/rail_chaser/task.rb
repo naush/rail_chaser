@@ -1,6 +1,7 @@
+require 'rail_chaser'
+require 'rail_chaser/storage'
 require 'rake'
 require 'rake/tasklib'
-require 'rail_chaser/storage'
 
 module RailChaser
   class Task < Rake::TaskLib
@@ -11,8 +12,8 @@ module RailChaser
     end
 
     def define(name)
-      desc 'Runs minimum set of specs'
       namespace :spec do
+        desc 'Runs minimum set of specs'
         task name do
           diff_files = `git diff HEAD --name-only`.split("\n")
 
