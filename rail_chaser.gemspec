@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Li-Hsuan Lung"]
   s.email       = ["lihsuan@8thlight.com"]
   s.homepage    = "http://github.com/naush/rail_chaser"
-  s.summary     = %q{A tool to determine the the minimum set of specs to run based on dependency analysis}
+  s.summary     = %q{A tool to find the minimum set of specs to run based on dependency analysis}
   s.description = %q{}
 
   s.add_dependency "rake", "0.9.2"
