@@ -25,11 +25,11 @@ describe RailChaser::Storage do
     it "saves a new example collection" do
       @storage.save!(test_example_collection)
 
-      classes = @storage.list_classes
+      classes = @storage.classes
       classes.should include('/a.rb')
       classes.should include('/b.rb')
 
-      specs = @storage.list_specs
+      specs = @storage.specs
       specs.should include('/a_spec.rb')
       specs.should include('/b_spec.rb')
     end

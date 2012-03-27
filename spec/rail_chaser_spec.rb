@@ -26,10 +26,11 @@ describe RailChaser do
 
     it "configures options for storage" do
       RailChaser.on do |config|
-        config.db_path = 'spec.rb'
+        config.db_path = 'spec.db'
       end
 
-      RailChaser.storage.options[:db_path].should == 'spec.rb'
+      RailChaser.storage.options[:db_path].should == 'spec.db'
+      RailChaser.storage.destroy!
     end
   end
 end

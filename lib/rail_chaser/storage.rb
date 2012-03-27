@@ -15,6 +15,14 @@ module RailChaser
       storage
     end
 
+    def classes
+      @connection.execute("SELECT file from classes").flatten
+    end
+
+    def specs
+      @connection.execute("SELECT file from specs").flatten
+    end
+
     def add_class(file)
       @connection.execute("INSERT INTO classes (file) values ('#{file}');")
     end
