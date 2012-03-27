@@ -12,7 +12,7 @@ module RailChaser
 
     def define(name)
       namespace :spec do
-        desc 'Runs minimum set of specs'
+        desc 'Run minimum set of specs'
         task name do
           diff_files = `git diff HEAD --name-only`.split("\n")
 
